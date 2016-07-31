@@ -161,9 +161,10 @@ class SeriesSerializer(PandasSerializer):
     TYPE = 'series'
 
     def _column_data(self, s):
-        if s.name is None:
-            log.info("Series has no name, defaulting to 'values'")
-        columns = [s.name if s.name else 'values']
+        #if s.name is None:
+        #    log.info("Series has no name, defaulting to 'values'")
+        columns = [getattr(s, 'name', 'values')]
+        #columns = [s.name if s.name else 'values']
         column_vals = [s.values]
         return columns, column_vals
 
